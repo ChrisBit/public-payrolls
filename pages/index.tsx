@@ -1,8 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import {useEffect, useState} from "react";
+import {getAgenciesByName} from "../api/public-payroll-api";
 
 export default function Home() {
+  const [agencies, setAgencies] = useState([])
+  useEffect(() => {
+    async function fetchData() {
+      const agencyResponse = await getAgenciesByName();
+      setAgencies(agencyResponse);
+    }
+    fetchData().then()
+  }, [])
+
   return (
     <div className={styles.container}>
       <Head>
