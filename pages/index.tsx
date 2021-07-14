@@ -1,14 +1,23 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { getAgenciesByName } from "../api/public-payroll-api";
+import {
+  getAgenciesByName,
+  getTopEarnersByDepartment,
+} from "../api/public-payroll-api";
 import MaterialTable from "material-table";
+import SearchAppBar from "./AppSearchBar";
 
 export default function Home() {
   const [agencies, setAgencies] = useState([]);
+  const [employees, setEmployees] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      const agencyResponse = await getAgenciesByName();
+      const [agencyResponse, employees] = await Promise.all([
+        getAgenciesByName(),
+        getTopEarnersByDepartment(),
+      ]);
       setAgencies(agencyResponse);
+      setEmployees(employees);
     }
 
     fetchData().then();
@@ -25,33 +34,53 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
+      <div className="app-bar-container">
+        <SearchAppBar />
+      </div>
 
-      <MaterialTable
-        title={"Agencies"}
-        columns={[
-          { field: "id", title: "id", hidden: true },
-          { field: "name", title: "Agency" },
-          {
-            field: "employeeCount",
-            title: "Employees",
-            type: "numeric",
-          },
-          {
-            field: "topPay",
-            title: "Top Pay",
-            defaultSort: "desc",
-            type: "currency",
-          },
-          { field: "medianPay", title: "Median Pay", type: "currency" },
-          {
-            field: "year",
-            title: "Year",
-            align: "right",
-          },
-        ]}
-        data={agencies}
-        options={{ pageSize: 10 }}
-      />
+      <div className="agency-table-container">
+        <MaterialTable
+          title={"Agencies"}
+          columns={[
+            { field: "id", title: "id", hidden: true },
+            { field: "name", title: "Agency" },
+            {
+              field: "employeeCount",
+              title: "Employees",
+              type: "numeric",
+            },
+            {
+              field: "topPay",
+              title: "Top Pay",
+              defaultSort: "desc",
+              type: "currency",
+            },
+            { field: "medianPay", title: "Median Pay", type: "currency" },
+            {
+              field: "year",
+              title: "Year",
+              align: "right",
+            },
+          ]}
+          data={agencies}
+          options={{ pageSize: 10 }}
+        />
+      </div>
+      <div className="top-earners-container">
+        <MaterialTable
+          title={"Top Earners"}
+          columns={[
+            { field: "id", hidden: true },
+            { field: "name", title: "Name" },
+            { field: "jobTitle", title: "Title" },
+            { field: "agency", title: "Agency" },
+            { field: "totalAnnualAmount", title: "Pay", type: "currency" },
+            { field: "year", title: "Year", type: "numeric" },
+            { field: "originalHireDate", title: "Hire Date", align: "right" },
+          ]}
+          data={employees}
+        />
+      </div>
     </div>
   );
 }
