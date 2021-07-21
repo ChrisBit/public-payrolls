@@ -10,6 +10,13 @@ export const getAgenciesByName = async (agency?: string) => {
   return agencies;
 };
 
+export const getAgencyById = async (agencyId: string) => {
+  const { data: agency } = await axios.get(
+    `${getApiBaseUrl()}/agencies/${agencyId}`
+  );
+  return agency;
+};
+
 export const getTopEarnersByDepartment = async (department?: string) => {
   let url = `${getApiBaseUrl()}/employees/top-earners`;
   if (department) {
