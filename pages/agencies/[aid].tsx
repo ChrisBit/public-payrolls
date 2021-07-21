@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAgencyById } from "../../api/public-payroll-api";
 import { useRouter } from "next/router";
+import AgencyDetailCard from "./agency-detail.card";
 
 export default function Agency() {
   const router = useRouter();
@@ -16,5 +17,9 @@ export default function Agency() {
     }
   });
 
-  return <div>{JSON.stringify(agency)}</div>;
+  return (
+    <div>
+      <AgencyDetailCard agency={agency} />
+    </div>
+  );
 }
