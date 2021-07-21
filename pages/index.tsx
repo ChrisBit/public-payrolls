@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {
   getAgenciesByName,
@@ -8,6 +9,7 @@ import MaterialTable from "material-table";
 import SearchAppBar from "./AppSearchBar";
 
 export default function Home() {
+  const router = useRouter();
   const [agencies, setAgencies] = useState([]);
   const [employees, setEmployees] = useState([]);
   useEffect(() => {
@@ -64,6 +66,11 @@ export default function Home() {
           ]}
           data={agencies}
           options={{ pageSize: 10 }}
+          // @ts-ignore
+          onRowClick={(event, { id }) => {
+            event?.preventDefault();
+            router.push(`/agencies/${id}`);
+          }}
         />
       </div>
       <div className="top-earners-container">
@@ -79,6 +86,7 @@ export default function Home() {
             { field: "originalHireDate", title: "Hire Date", align: "right" },
           ]}
           data={employees}
+          options={{ pageSize: 10 }}
         />
       </div>
     </div>
