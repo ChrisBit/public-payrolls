@@ -1,12 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getAgenciesByName,
   getTopEarnersByDepartment,
 } from "../api/public-payroll-api";
 import MaterialTable from "material-table";
 import SearchAppBar from "./AppSearchBar";
+import TopEarnersTable from "./earner/TopEarnersTable";
 
 export default function Home() {
   const router = useRouter();
@@ -72,22 +73,7 @@ export default function Home() {
             router.push(`/agencies/${id}`);
           }}
         />
-      </div>
-      <div className="top-earners-container">
-        <MaterialTable
-          title={"Top Earners"}
-          columns={[
-            { field: "id", hidden: true },
-            { field: "name", title: "Name" },
-            { field: "jobTitle", title: "Title" },
-            { field: "agency", title: "Agency" },
-            { field: "totalAnnualAmount", title: "Pay", type: "currency" },
-            { field: "year", title: "Year", type: "numeric" },
-            { field: "originalHireDate", title: "Hire Date", align: "right" },
-          ]}
-          data={employees}
-          options={{ pageSize: 10 }}
-        />
+        <TopEarnersTable employees={employees} />
       </div>
     </div>
   );

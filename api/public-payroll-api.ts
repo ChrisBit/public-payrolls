@@ -20,7 +20,7 @@ export const getAgencyById = async (agencyId: string) => {
 export const getTopEarnersByDepartment = async (department?: string) => {
   let url = `${getApiBaseUrl()}/employees/top-earners`;
   if (department) {
-    url += `agency=${department}`;
+    url += `?agency=${department}`;
   }
   const { data: employees } = await axios.get(url);
   return employees;
