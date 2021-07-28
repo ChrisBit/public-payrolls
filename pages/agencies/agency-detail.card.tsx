@@ -22,9 +22,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AgencyDetailCard({
-  agency: { employeeCount, name, topPay, medianPay, year },
-}) {
+export default function AgencyDetailCard({ agency }) {
+  const { employeeCount, name, topPay, medianPay, year } = agency;
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
   return (
