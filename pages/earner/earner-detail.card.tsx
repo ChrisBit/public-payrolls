@@ -21,8 +21,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AgencyDetailCard({ agency }) {
-  const { employeeCount, name, topPay, medianPay, year } = agency;
+export default function EarnerDetailCard({ employee }) {
+  const { name, jobTitle, agency, totalAnnualAmount, year, originalHireDate } =
+    employee;
   const classes = useStyles();
   return (
     <>
@@ -32,14 +33,16 @@ export default function AgencyDetailCard({ agency }) {
             {name}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            ({year})
+            ({jobTitle})
           </Typography>
           <Typography variant="body2" component="p">
-            Top Pay: {topPay}
+            Agency: {agency}
             <br />
-            Median Pay: {medianPay}
+            Total Pay: {totalAnnualAmount}
             <br />
-            employees: {employeeCount}
+            Year: {year}
+            <br />
+            Hire date: {originalHireDate}
           </Typography>
         </CardContent>
       </Card>
