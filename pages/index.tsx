@@ -6,7 +6,6 @@ import {
   getTopEarnersByDepartment,
 } from "../api/public-payroll-api";
 import MaterialTable from "material-table";
-import SearchAppBar from "./AppSearchBar";
 import TopEarnersTable from "./earner/TopEarnersTable";
 
 export default function Home() {
@@ -37,10 +36,6 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-      <div className="app-bar-container">
-        <SearchAppBar />
-      </div>
-
       <div className="agency-table-container">
         <MaterialTable
           title={"Agencies"}

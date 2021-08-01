@@ -1,11 +1,13 @@
 import MaterialTable from "material-table";
 import React from "react";
+import { useRouter } from "next/router";
 
 export default function TopEarnersTable({
   employees,
   title = "Top Earners",
   options = { pageSize: 10 },
 }) {
+  const router = useRouter();
   return (
     <div className="top-earners-container">
       <MaterialTable
@@ -21,6 +23,11 @@ export default function TopEarnersTable({
         ]}
         data={employees}
         options={options}
+        // @ts-ignore
+        onRowClick={(event, { id }) => {
+          event?.preventDefault();
+          router.push(`/earner/${id}`);
+        }}
       />
     </div>
   );
