@@ -83,28 +83,30 @@ export default function SearchAppBar() {
   const classes = useStyles();
   const router = useRouter();
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography className={classes.title} variant="h6" noWrap>
-          Public Payrolls
-        </Typography>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography className={classes.title} variant="h6" noWrap>
+            Public Payrolls
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+              value={searchValue}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+            />
           </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ "aria-label": "search" }}
-            value={searchValue}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          />
-        </div>
-      </Toolbar>
-    </AppBar>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
