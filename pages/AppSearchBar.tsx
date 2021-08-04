@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -86,9 +87,11 @@ export default function SearchAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Public Payrolls
-          </Typography>
+          <Link href="/">
+            <Typography className={classes.title} variant="h6" noWrap>
+              Public Payrolls
+            </Typography>
+          </Link>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
