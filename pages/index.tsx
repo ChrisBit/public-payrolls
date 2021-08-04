@@ -1,15 +1,13 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import {
   getAgenciesByName,
   getTopEarnersByDepartment,
 } from "../api/public-payroll-api";
-import MaterialTable from "material-table";
 import TopEarnersTable from "./earner/TopEarnersTable";
+import AgenciesTable from "./agencies/AgenciesTable";
 
 export default function Home() {
-  const router = useRouter();
   const [agencies, setAgencies] = useState([]);
   const [employees, setEmployees] = useState([]);
   useEffect(() => {
@@ -37,37 +35,7 @@ export default function Home() {
         />
       </Head>
       <div className="agency-table-container">
-        <MaterialTable
-          title={"Agencies"}
-          columns={[
-            { field: "id", title: "id", hidden: true },
-            { field: "name", title: "Agency" },
-            {
-              field: "employeeCount",
-              title: "Employees",
-              type: "numeric",
-            },
-            {
-              field: "topPay",
-              title: "Top Pay",
-              defaultSort: "desc",
-              type: "currency",
-            },
-            { field: "medianPay", title: "Median Pay", type: "currency" },
-            {
-              field: "year",
-              title: "Year",
-              align: "right",
-            },
-          ]}
-          data={agencies}
-          options={{ pageSize: 10 }}
-          // @ts-ignore
-          onRowClick={(event, { id }) => {
-            event?.preventDefault();
-            router.push(`/agencies/${id}`);
-          }}
-        />
+        <AgenciesTable agencies={agencies} />
         <TopEarnersTable employees={employees} />
       </div>
     </div>
