@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import {
   createStyles,
   fade,
-  Theme,
   makeStyles,
+  Theme,
 } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -71,8 +70,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function SearchAppBar() {
-  const classes = useStyles();
+  const [searchValue, setSearchValue] = useState("");
+  const handleChange = (event) => {
+    setSearchValue(event.target.value);
+  };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      router.push("/search?q=" + encodeURIComponent(searchValue));
+    }
+  };
+  const classes = useStyles();
+  const router = useRouter();
   return (
     <AppBar position="static">
       <Toolbar>
@@ -90,6 +99,9 @@ export default function SearchAppBar() {
               input: classes.inputInput,
             }}
             inputProps={{ "aria-label": "search" }}
+            value={searchValue}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
         </div>
       </Toolbar>

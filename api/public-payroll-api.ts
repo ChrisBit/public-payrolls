@@ -4,7 +4,7 @@ import { getApiBaseUrl } from "../config/config.service";
 export const getAgenciesByName = async (agency?: string) => {
   let url = `${getApiBaseUrl()}/agencies`;
   if (agency) {
-    url += `name=${agency}`;
+    url += `?name=${agency}`;
   }
   const { data: agencies } = await axios.get(url);
   return agencies;
@@ -30,4 +30,13 @@ export const getEarnerById = async (earnerId: string) => {
   let url = `${getApiBaseUrl()}/employees/${earnerId}`;
   const { data: employee } = await axios.get(url);
   return employee;
+};
+
+export const getEmployeesByName = async (employee?: string) => {
+  let url = `${getApiBaseUrl()}/employees`;
+  if (employee) {
+    url += `?name=${employee}`;
+  }
+  const { data: employees } = await axios.get(url);
+  return employees;
 };
