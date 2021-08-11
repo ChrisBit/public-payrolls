@@ -3,12 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import {CardActions, CardHeader, Link} from "@material-ui/core";
+import { CardActions, CardHeader, Link } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    backgroundColor: '#f0f0f0'
+    backgroundColor: "#f0f0f0",
   },
   bullet: {
     display: "inline-block",
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 });
 
 export default function AgencyDetailCard({ agency }) {
-  const { employeeCount, name, topPay, medianPay} = agency;
+  const { employeeCount, name, topPay, medianPay, totalPay } = agency;
   const classes = useStyles();
   return (
     <>
@@ -32,15 +32,15 @@ export default function AgencyDetailCard({ agency }) {
             subheader={`Serving ${employeeCount} people in Nebraska`}
           />
           <Typography variant="body2" component="p">
-            Total Payroll: TBD
-            <hr/>
+            Total Payroll: ${totalPay}
+            <hr />
             Top Pay: ${topPay}
-            <hr/>
+            <hr />
             Median Pay: ${medianPay}
           </Typography>
         </CardContent>
         <CardActions>
-          <Link href={'#'} variant={'body2'}>
+          <Link href={"#"} variant={"body2"}>
             Agency Website
           </Link>
         </CardActions>

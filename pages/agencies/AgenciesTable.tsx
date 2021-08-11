@@ -27,6 +27,7 @@ export default function AgenciesTable({
           type: "currency",
         },
         { field: "medianPay", title: "Median Pay", type: "currency" },
+        { field: "totalPay", title: "Total Pay", type: "currency" },
         {
           field: "year",
           title: "Year",
