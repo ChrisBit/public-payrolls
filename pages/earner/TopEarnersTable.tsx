@@ -1,6 +1,7 @@
 import MaterialTable from "material-table";
 import React from "react";
 import { useRouter } from "next/router";
+import { getStyledEarnerShortName } from "./earner-utils";
 
 export default function TopEarnersTable({
   employees,
@@ -24,9 +25,9 @@ export default function TopEarnersTable({
         data={employees}
         options={{ pageSize: 10, ...options }}
         // @ts-ignore
-        onRowClick={(event, { id }) => {
+        onRowClick={(event, { id, name }) => {
           event?.preventDefault();
-          router.push(`/earner/${id}`);
+          router.push(`/earner/${id}/${getStyledEarnerShortName(name)}`);
         }}
       />
     </div>
