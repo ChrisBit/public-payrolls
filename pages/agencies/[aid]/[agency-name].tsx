@@ -8,14 +8,17 @@ import {
   getAgencyById,
   getTopEarnersByDepartment,
 } from "../../../api/public-payroll-api";
-import { getStyledAgencyShortName } from "../agency-utils";
+import {
+  getAgencyNameWithoutNumber,
+  getStyledAgencyShortName,
+} from "../agency-utils";
 
 const useStyles = makeStyles({
   root: {},
   title: {
     minWidth: 275,
-    backgroundColor: "#EC7357",
-    color: "white",
+    color: "black",
+    marginLeft: "20px",
     marginBottom: "20px",
   },
   columns: {
@@ -81,7 +84,7 @@ export default function Agency() {
       </Head>
       <div className={classes.title}>
         <Typography variant={"h3"} component={"h1"}>
-          {agency?.name}
+          {getAgencyNameWithoutNumber(agency.name)}
         </Typography>
       </div>
       <div className={classes.columns}>
