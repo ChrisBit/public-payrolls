@@ -1,6 +1,7 @@
 import MaterialTable from "material-table";
 import React from "react";
 import { useRouter } from "next/router";
+import { getStyledAgencyShortName } from "./agency-utils";
 
 export default function AgenciesTable({
   agencies,
@@ -35,9 +36,9 @@ export default function AgenciesTable({
       data={agencies}
       options={{ pageSize: 10, ...options }}
       // @ts-ignore
-      onRowClick={(event, { id }) => {
+      onRowClick={(event, { id, name }) => {
         event?.preventDefault();
-        router.push(`/agencies/${id}`);
+        router.push(`/agencies/${id}/${getStyledAgencyShortName(name)}`);
       }}
     />
   );
