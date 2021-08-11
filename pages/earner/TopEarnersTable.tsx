@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export default function TopEarnersTable({
   employees,
   title = "Top Earners",
-  options = { pageSize: 10 },
+  options = {},
 }) {
   const router = useRouter();
   return (
@@ -22,7 +22,7 @@ export default function TopEarnersTable({
           { field: "originalHireDate", title: "Hire Date", align: "right" },
         ]}
         data={employees}
-        options={options}
+        options={{ pageSize: 10, ...options }}
         // @ts-ignore
         onRowClick={(event, { id }) => {
           event?.preventDefault();
