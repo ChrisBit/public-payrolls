@@ -50,12 +50,7 @@ export default function SearchResults() {
           />
         </Head>
         <div>
-          {agencies.length > 0 && (
-            <AgenciesTable
-              agencies={agencies}
-              options={{ emptyRowsWhenPaging: false }}
-            />
-          )}
+          {agencies.length > 0 && <AgenciesTable agencies={agencies} />}
           {employees.length > 0 && (
             <TopEarnersTable
               employees={employees}
