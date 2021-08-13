@@ -5,6 +5,7 @@ import { CircularProgress } from "@material-ui/core";
 import Head from "next/head";
 import EarnerDetailCard from "./../earner-detail.card";
 import { getStyledEarnerShortName } from "../earner-utils";
+import { getStyledAgencyShortName } from "../../agencies/agency-utils";
 
 export interface Employee {
   id: string;
@@ -40,10 +41,20 @@ export default function Earner() {
           name="description"
           content={`Public pay information for ${employee.name}`}
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
+        />
+        <meta
+          property="og:title"
+          content={getStyledEarnerShortName(employee.name)}
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content={`Public pay information for ${employee.name}`}
+          key="ogdesc"
         />
         {employee && (
           <link

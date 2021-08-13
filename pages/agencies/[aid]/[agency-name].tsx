@@ -72,7 +72,19 @@ export default function Agency() {
             agency.name
           )}`}
         />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:title"
+          content={getStyledAgencyShortName(agency.name)}
+          key="ogtitle"
+        />
+        <meta
+          property="og:description"
+          content={`Public employee pay information for ${getStyledAgencyShortName(
+            agency.name
+          )}`}
+          key="ogdesc"
+        />
+        <link rel="icon" href="/favicon.svg" />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"

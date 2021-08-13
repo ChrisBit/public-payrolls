@@ -31,7 +31,13 @@ export default function Home() {
           name="description"
           content="Public payroll information for Nebraska state employees."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Public payrolls" key="ogtitle" />
+        <meta
+          property="og:description"
+          content="Public payroll information for Nebraska state employees."
+          key="ogdesc"
+        />
+        <link rel="icon" href="/favicon.svg" />
         <link
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
