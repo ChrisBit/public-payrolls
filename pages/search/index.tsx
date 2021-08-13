@@ -52,11 +52,7 @@ export default function SearchResults() {
         <div>
           {agencies.length > 0 && <AgenciesTable agencies={agencies} />}
           {employees.length > 0 && (
-            <TopEarnersTable
-              employees={employees}
-              title={"Employees"}
-              options={{ pageSize: employees.length }}
-            />
+            <TopEarnersTable employees={employees} title={"Employees"} />
           )}
         </div>
       </div>
