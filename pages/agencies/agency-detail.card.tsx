@@ -4,6 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { CardActions, CardHeader, Link } from "@material-ui/core";
+import { formatCurrency } from "../utils";
 
 const useStyles = makeStyles({
   root: {
@@ -32,11 +33,11 @@ export default function AgencyDetailCard({ agency }) {
             subheader={`Serving ${employeeCount} people in Nebraska`}
           />
           <Typography variant="body2" component="p">
-            Total Payroll: ${totalPay}
+            Total Payroll: {formatCurrency(totalPay)}
             <hr />
-            Top Pay: ${topPay}
+            Top Pay: {formatCurrency(topPay)}
             <hr />
-            Median Pay: ${medianPay}
+            Median Pay: {formatCurrency(medianPay)}
           </Typography>
         </CardContent>
         <CardActions>

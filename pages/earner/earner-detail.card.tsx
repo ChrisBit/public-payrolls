@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import { formatCurrency } from "../utils";
 
 const useStyles = makeStyles({
   root: {
@@ -38,7 +39,7 @@ export default function EarnerDetailCard({ employee }) {
           <Typography variant="body2" component="p">
             Agency: {agency}
             <br />
-            Total Pay: {totalAnnualAmount}
+            Total Pay: {formatCurrency(totalAnnualAmount)}
             <br />
             Year: {year}
             <br />
