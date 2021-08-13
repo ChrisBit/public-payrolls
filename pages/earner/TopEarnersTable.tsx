@@ -1,29 +1,49 @@
-import MaterialTable from "material-table";
 import React from "react";
+import MUIDataTable from "mui-datatables";
 import { useRouter } from "next/router";
 import { getStyledEarnerShortName } from "./earner-utils";
+import { formatCurrency } from "../utils";
+import { getStyledAgencyShortName } from "../agencies/agency-utils";
 
-export default function TopEarnersTable({
-  employees,
-  title = "Top Earners",
-  options = {},
-}) {
+export default function TopEarnersTable({ employees, title = "Top Earners" }) {
   const router = useRouter();
   return (
     <div className="top-earners-container">
-      <MaterialTable
+      <MUIDataTable
         title={title}
         columns={[
-          { field: "id", hidden: true },
-          { field: "name", title: "Name" },
-          { field: "jobTitle", title: "Title" },
-          { field: "agency", title: "Agency" },
-          { field: "totalAnnualAmount", title: "Pay", type: "currency" },
-          { field: "year", title: "Year", type: "numeric" },
-          { field: "originalHireDate", title: "Hire Date", align: "right" },
+          { name: "id", options: { display: false } },
+          { name: "name", label: "Name" },
+          { name: "jobTitle", label: "Title" },
+          { name: "agency", label: "Agency" },
+          {
+            name: "totalAnnualAmount",
+            label: "Pay",
+            options: {
+              sortDirection: "desc",
+              customBodyRenderLite: (dataIndex) => {
+                let val = employees[dataIndex].totalAnnualAmount;
+                return formatCurrency(val);
+              },
+            },
+          },
+          { name: "year", label: "Year" },
+          { name: "originalHireDate", label: "Hire Date" },
         ]}
         data={employees}
-        options={{ pageSize: 10, ...options }}
+        options={{
+          download: false,
+          filter: false,
+          print: false,
+          viewColumns: false,
+          selectableRows: "none",
+          onRowClick: (rowData) => {
+            console.log(rowData);
+            router.push(
+              `/earner/${rowData[0]}/${getStyledAgencyShortName(rowData[1])}`
+            );
+          },
+        }}
         // @ts-ignore
         onRowClick={(event, { id, name }) => {
           event?.preventDefault();

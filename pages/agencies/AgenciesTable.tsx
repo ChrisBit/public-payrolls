@@ -2,7 +2,7 @@ import React from "react";
 import MUIDataTable from "mui-datatables";
 import { useRouter } from "next/router";
 import { getStyledAgencyShortName } from "./agency-utils";
-import { currencySort, formatCurrency } from "../utils";
+import { formatCurrency } from "../utils";
 
 export default function AgenciesTable({ agencies, title = "Agencies" }) {
   const data = agencies.map(
@@ -10,9 +10,9 @@ export default function AgenciesTable({ agencies, title = "Agencies" }) {
       id,
       name,
       employeeCount,
-      formatCurrency(topPay),
-      formatCurrency(medianPay),
-      formatCurrency(totalPay),
+      topPay,
+      medianPay,
+      totalPay,
       year,
     ]
   );
@@ -35,18 +35,31 @@ export default function AgenciesTable({ agencies, title = "Agencies" }) {
           label: "Top Pay",
           options: {
             sortDirection: "desc",
-            sortCompare: currencySort,
+            customBodyRenderLite: (dataIndex) => {
+              let val = agencies[dataIndex].topPay;
+              return formatCurrency(val);
+            },
           },
         },
         {
           name: "medianPay",
           label: "Median Pay",
-          options: { sortCompare: currencySort },
+          options: {
+            customBodyRenderLite: (dataIndex) => {
+              let val = agencies[dataIndex].medianPay;
+              return formatCurrency(val);
+            },
+          },
         },
         {
           name: "totalPay",
           label: "Total Pay",
-          options: { sortCompare: currencySort },
+          options: {
+            customBodyRenderLite: (dataIndex) => {
+              let val = agencies[dataIndex].totalPay;
+              return formatCurrency(val);
+            },
+          },
         },
         {
           name: "year",
