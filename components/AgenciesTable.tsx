@@ -1,8 +1,8 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
 import { useRouter } from "next/router";
-import { getStyledAgencyShortName } from "./agency-utils";
-import { formatCurrency } from "../utils";
+import { getStyledAgencyShortName } from "../utils/agency-utils";
+import { formatCurrency } from "../utils/utils";
 
 export default function AgenciesTable({ agencies, title = "Agencies" }) {
   const data = agencies.map(

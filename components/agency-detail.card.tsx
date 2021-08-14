@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { CardActions, CardHeader, Link } from "@material-ui/core";
-import { formatCurrency } from "../utils";
+import { formatCurrency } from "../utils/utils";
 
 const useStyles = makeStyles({
   root: {

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { CircularProgress, Typography, makeStyles } from "@material-ui/core";
 import Head from "next/head";
-import AgencyDetailCard from "../agency-detail.card";
-import TopEarnersTable from "../../earner/TopEarnersTable";
+import AgencyDetailCard from "../../../components/agency-detail.card";
+import TopEarnersTable from "../../../components/TopEarnersTable";
 import {
   getAgencyById,
   getTopEarnersByDepartment,
@@ -11,7 +11,7 @@ import {
 import {
   getAgencyNameWithoutNumber,
   getStyledAgencyShortName,
-} from "../agency-utils";
+} from "../../../utils/agency-utils";
 
 const useStyles = makeStyles({
   root: {},
@@ -65,7 +65,7 @@ export default function Agency() {
   return agency && employees ? (
     <div>
       <Head>
-        <title>{getStyledAgencyShortName(agency.name)}</title>
+        <title>{getAgencyNameWithoutNumber(agency.name)}</title>
         <meta
           name="description"
           content={`Public employee pay information for ${getStyledAgencyShortName(

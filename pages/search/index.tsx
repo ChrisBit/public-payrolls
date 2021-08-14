@@ -6,8 +6,8 @@ import {
 import { useRouter } from "next/router";
 import { CircularProgress, Typography } from "@material-ui/core";
 import Head from "next/head";
-import TopEarnersTable from "../earner/TopEarnersTable";
-import AgenciesTable from "../agencies/AgenciesTable";
+import TopEarnersTable from "../../components/TopEarnersTable";
+import AgenciesTable from "../../components/AgenciesTable";
 
 export default function SearchResults() {
   const router = useRouter();

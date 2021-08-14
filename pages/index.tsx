@@ -4,8 +4,8 @@ import {
   getAgenciesByName,
   getTopEarnersByDepartment,
 } from "../api/public-payroll-api";
-import TopEarnersTable from "./earner/TopEarnersTable";
-import AgenciesTable from "./agencies/AgenciesTable";
+import TopEarnersTable from "../components/TopEarnersTable";
+import AgenciesTable from "../components/AgenciesTable";
 
 export default function Home() {
   const [agencies, setAgencies] = useState([]);

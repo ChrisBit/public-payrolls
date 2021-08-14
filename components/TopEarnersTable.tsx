@@ -1,9 +1,9 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
 import { useRouter } from "next/router";
-import { getStyledEarnerShortName } from "./earner-utils";
-import { formatCurrency } from "../utils";
-import { getStyledAgencyShortName } from "../agencies/agency-utils";
+import { getStyledEarnerShortName } from "../utils/earner-utils";
+import { formatCurrency } from "../utils/utils";
+import { getStyledAgencyShortName } from "../utils/agency-utils";
 
 export default function TopEarnersTable({ employees, title = "Top Earners" }) {
   const router = useRouter();

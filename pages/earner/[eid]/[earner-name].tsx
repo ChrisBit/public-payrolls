@@ -3,9 +3,8 @@ import { getEarnerById } from "../../../api/public-payroll-api";
 import { useRouter } from "next/router";
 import { CircularProgress } from "@material-ui/core";
 import Head from "next/head";
-import EarnerDetailCard from "./../earner-detail.card";
-import { getStyledEarnerShortName } from "../earner-utils";
-import { getStyledAgencyShortName } from "../../agencies/agency-utils";
+import EarnerDetailCard from "../../../components/earner-detail.card";
+import { getStyledEarnerShortName } from "../../../utils/earner-utils";
 
 export interface Employee {
   id: string;
