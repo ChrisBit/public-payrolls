@@ -35,8 +35,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   });
 
-  console.log("Erik: " + JSON.stringify(fields[0]));
-
   return getServerSideSitemap(ctx, fields);
 };
 
