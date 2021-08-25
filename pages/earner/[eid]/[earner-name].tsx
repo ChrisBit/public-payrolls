@@ -51,11 +51,6 @@ export default function Earner() {
           name="description"
           content={`Public pay information for ${employee.name}`}
         />
-        <link rel="icon" href="/favicon.svg" />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
         <meta
           property="og:title"
           content={getStyledEarnerShortName(employee.name)}

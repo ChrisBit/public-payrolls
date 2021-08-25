@@ -37,11 +37,6 @@ export default function Home() {
           content="Public payroll information for Nebraska state employees."
           key="ogdesc"
         />
-        <link rel="icon" href="/favicon.svg" />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
       </Head>
       <div className="agency-table-container">
         <AgenciesTable agencies={agencies} />
