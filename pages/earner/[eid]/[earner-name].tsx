@@ -49,7 +49,7 @@ export default function Earner() {
         <title>{getStyledEarnerShortName(employee.name)}</title>
         <meta
           name="description"
-          content={`Public pay information for ${employee.name}`}
+          content={`Nebraska public pay information for ${employee.name}`}
         />
         <meta
           property="og:title"
@@ -58,7 +58,7 @@ export default function Earner() {
         />
         <meta
           property="og:description"
-          content={`Public pay information for ${employee.name}`}
+          content={`Nebraska public pay information for ${employee.name}`}
           key="ogdesc"
         />
         {employee && (

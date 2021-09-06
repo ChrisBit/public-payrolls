@@ -26,12 +26,16 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Public Payrolls</title>
+        <title>Nebraska Public Payrolls</title>
         <meta
           name="description"
           content="Public payroll information for Nebraska state employees."
         />
-        <meta property="og:title" content="Public payrolls" key="ogtitle" />
+        <meta
+          property="og:title"
+          content="Nebraska public payrolls"
+          key="ogtitle"
+        />
         <meta
           property="og:description"
           content="Public payroll information for Nebraska state employees."

@@ -68,7 +68,7 @@ export default function Agency() {
         <title>{getAgencyNameWithoutNumber(agency.name)}</title>
         <meta
           name="description"
-          content={`Public employee pay information for ${getStyledAgencyShortName(
+          content={`Nebraska public employee pay information for ${getStyledAgencyShortName(
             agency.name
           )}`}
         />
@@ -79,7 +79,7 @@ export default function Agency() {
         />
         <meta
           property="og:description"
-          content={`Public employee pay information for ${getStyledAgencyShortName(
+          content={`Nebraska public employee pay information for ${getStyledAgencyShortName(
             agency.name
           )}`}
           key="ogdesc"
