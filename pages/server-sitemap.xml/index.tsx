@@ -16,13 +16,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const agencyUrls = agencies.map(
     ({ id, name }) =>
       `${
-        process.env.NEXT_PUBLIC_PAYROLL_BASE_URL
+        process.env.NEXT_PUBLIC_VERCEL_URL
       }/agencies/${id}/${getStyledAgencyShortName(name)}`
   );
   const employeeUrls = employees.map(
     ({ id, name }) =>
       `${
-        process.env.NEXT_PUBLIC_PAYROLL_BASE_URL
+        process.env.NEXT_PUBLIC_VERCEL_URL
       }/earner/${id}/${getStyledEarnerShortName(name)}`
   );
 
