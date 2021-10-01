@@ -8,6 +8,9 @@ import { formatCurrency } from "../utils/utils";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    marginTop: 20,
+    backgroundColor: "#f0f0f0",
+    height: "400px",
   },
   bullet: {
     display: "inline-block",
@@ -38,11 +41,11 @@ export default function EarnerDetailCard({ employee }) {
           </Typography>
           <Typography variant="body2" component="p">
             Agency: {agency}
-            <br />
+            <hr />
             Total Pay: {formatCurrency(totalAnnualAmount)}
-            <br />
+            <hr />
             Year: {year}
-            <br />
+            <hr />
             Hire date: {originalHireDate}
           </Typography>
         </CardContent>

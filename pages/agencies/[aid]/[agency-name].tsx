@@ -108,7 +108,10 @@ export default function Agency() {
             <AgencyDetailCard agency={agency} />
           </Grid>
           <Grid item lg={9} sm={12}>
-            <SalaryScatterChart employeeList={employees} />
+            <SalaryScatterChart
+              employeeList={employees}
+              highlightedEmployee={undefined}
+            />
           </Grid>
         </Grid>
       </div>

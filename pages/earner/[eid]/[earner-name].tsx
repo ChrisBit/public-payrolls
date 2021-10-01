@@ -4,13 +4,29 @@ import {
   getEarnerById,
 } from "../../../api/public-payroll-api";
 import { useRouter } from "next/router";
-import { CircularProgress, Grid } from "@material-ui/core";
+import { CircularProgress, Grid, makeStyles } from "@material-ui/core";
 import Head from "next/head";
 import EarnerDetailCard from "../../../components/earner-detail.card";
 import { getStyledEarnerShortName } from "../../../utils/earner-utils";
 import TopEarnersTable from "../../../components/TopEarnersTable";
 import { getAgencyNameWithoutNumber } from "../../../utils/agency-utils";
 import SalaryScatterChart from "../../../components/SalaryScatterChart";
+
+const useStyles = makeStyles({
+  root: {},
+  title: {
+    minWidth: 275,
+    color: "black",
+    marginLeft: "20px",
+    marginBottom: "20px",
+  },
+  columns: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: "20px",
+  },
+});
 
 export interface Employee {
   id: string;
@@ -26,6 +42,7 @@ export type NullableEmployee = Employee | null;
 
 export default function Earner() {
   const router = useRouter();
+  const classes = useStyles();
   const { eid } = router.query;
   const [employee, setEmployee] = useState(null as NullableEmployee);
   const [agencyEmployees, setAgencyEmployees] = useState(
@@ -72,17 +89,19 @@ export default function Earner() {
           />
         )}
       </Head>
-      <Grid container>
-        <Grid item lg={3} sm={12}>
-          <EarnerDetailCard employee={employee} />
+      <div className={classes.columns}>
+        <Grid container>
+          <Grid item lg={3} sm={12}>
+            <EarnerDetailCard employee={employee} />
+          </Grid>
+          <Grid item lg={9} sm={12}>
+            <SalaryScatterChart
+              employeeList={filteredAgencyEmployees}
+              highlightedEmployee={employee}
+            />
+          </Grid>
         </Grid>
-        <Grid item lg={9} sm={12}>
-          <SalaryScatterChart
-            employeeList={filteredAgencyEmployees}
-            highlightedEmployee={employee}
-          />
-        </Grid>
-      </Grid>
+      </div>
       <TopEarnersTable
         title={`More employees from ${getAgencyNameWithoutNumber(
           employee.agency
@@ -91,6 +110,6 @@ export default function Earner() {
       />
     </div>
   ) : (
-    <CircularProgress />
+    <CircularProgress size={100} />
   );
 }
