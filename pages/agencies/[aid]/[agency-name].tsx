@@ -104,11 +104,11 @@ export default function Agency() {
       </div>
       <div className={classes.columns}>
         <Grid container>
-          <Grid item lg={9} sm={12}>
-            <SalaryScatterChart employeeList={employees} />
-          </Grid>
           <Grid item lg={3} sm={12}>
             <AgencyDetailCard agency={agency} />
+          </Grid>
+          <Grid item lg={9} sm={12}>
+            <SalaryScatterChart employeeList={employees} />
           </Grid>
         </Grid>
       </div>
