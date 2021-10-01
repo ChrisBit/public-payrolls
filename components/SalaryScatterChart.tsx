@@ -68,6 +68,7 @@ export default function SalaryScatterChart({
             formatter={(value, name, props) =>
               name === "salary" ? formatCurrency(value) : value
             }
+            labelFormatter={() => ""}
             content={<SalaryScatterChartCustomTooltip />}
           />
           {highlightedEmployee && (
