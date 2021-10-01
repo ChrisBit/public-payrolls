@@ -26,6 +26,15 @@ export const getTopEarnersByDepartment = async (department?: string) => {
   return employees;
 };
 
+export const getAllEarnersByDepartment = async (department?: string) => {
+  let url = `${getApiBaseUrl()}/employees/top-earners`;
+  if (department) {
+    url += `?agency=${department}&limit=0`;
+  }
+  const { data: employees } = await axios.get(url);
+  return employees;
+};
+
 export const getEarnerById = async (earnerId: string) => {
   let url = `${getApiBaseUrl()}/employees/${earnerId}`;
   const { data: employee } = await axios.get(url);

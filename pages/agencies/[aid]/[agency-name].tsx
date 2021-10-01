@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { CircularProgress, Typography, makeStyles } from "@material-ui/core";
+import { CircularProgress, makeStyles, Typography } from "@material-ui/core";
 import Head from "next/head";
 import AgencyDetailCard from "../../../components/agency-detail.card";
 import TopEarnersTable from "../../../components/TopEarnersTable";
 import {
   getAgencyById,
-  getTopEarnersByDepartment,
+  getAllEarnersByDepartment,
 } from "../../../api/public-payroll-api";
 import {
   getAgencyNameWithoutNumber,
   getStyledAgencyShortName,
 } from "../../../utils/agency-utils";
+import SalaryScatterChart from "../../../components/SalaryScatterChart";
 
 const useStyles = makeStyles({
   root: {},
@@ -54,7 +55,7 @@ export default function Agency() {
   useEffect(() => {
     async function fetchData(agencyId: string) {
       const agencyResponse = await getAgencyById(agencyId);
-      const employees = await getTopEarnersByDepartment(agencyResponse.name);
+      const employees = await getAllEarnersByDepartment(agencyResponse.name);
       setState({ agency: agencyResponse, employees });
     }
     if (typeof aid === "string") {
@@ -97,10 +98,9 @@ export default function Agency() {
         </Typography>
       </div>
       <div className={classes.columns}>
-        <div>Salary Distribution will go here</div>
+        <SalaryScatterChart employeeList={employees} />
         <AgencyDetailCard agency={agency} />
       </div>
-
       <TopEarnersTable employees={employees} />
     </div>
   ) : (
