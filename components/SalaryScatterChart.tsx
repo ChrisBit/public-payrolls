@@ -19,9 +19,8 @@ export default function SalaryScatterChart({ employeeList }) {
     y: now.diff(moment(employee.originalHireDate), "years"),
   }));
   return (
-    <ResponsiveContainer height={400} width="70%">
+    <ResponsiveContainer height={400} width="95%" minWidth="375px">
       <ScatterChart
-        width={800}
         height={400}
         margin={{
           top: 20,

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { CircularProgress, makeStyles, Typography } from "@material-ui/core";
+import {
+  CircularProgress,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import Head from "next/head";
 import AgencyDetailCard from "../../../components/agency-detail.card";
 import TopEarnersTable from "../../../components/TopEarnersTable";
@@ -98,8 +103,14 @@ export default function Agency() {
         </Typography>
       </div>
       <div className={classes.columns}>
-        <SalaryScatterChart employeeList={employees} />
-        <AgencyDetailCard agency={agency} />
+        <Grid container>
+          <Grid item lg={9} sm={12}>
+            <SalaryScatterChart employeeList={employees} />
+          </Grid>
+          <Grid item lg={3} sm={12}>
+            <AgencyDetailCard agency={agency} />
+          </Grid>
+        </Grid>
       </div>
       <TopEarnersTable employees={employees} />
     </div>

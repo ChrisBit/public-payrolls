@@ -9,6 +9,7 @@ import { formatCurrency } from "../utils/utils";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    marginTop: 20,
     backgroundColor: "#f0f0f0",
   },
   bullet: {
