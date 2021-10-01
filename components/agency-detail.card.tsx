@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { CardActions, CardHeader, Link } from "@material-ui/core";
+import { CardHeader } from "@material-ui/core";
 import { formatCurrency } from "../utils/utils";
 
 const useStyles = makeStyles({
@@ -40,11 +40,6 @@ export default function AgencyDetailCard({ agency }) {
             Median Pay: {formatCurrency(medianPay)}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Link href={"#"} variant={"body2"}>
-            Agency Website
-          </Link>
-        </CardActions>
       </Card>
     </>
   );
