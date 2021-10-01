@@ -11,6 +11,7 @@ import {
 import moment from "moment";
 import { formatCurrency } from "../utils/utils";
 import { Card } from "@material-ui/core";
+import SalaryScatterChartCustomTooltip from "./SalaryScatterChartCustomTooltip";
 
 export default function SalaryScatterChart({
   employeeList,
@@ -18,12 +19,14 @@ export default function SalaryScatterChart({
 }) {
   const now = moment();
   const data = employeeList.map((employee) => ({
-    name: employee.jobTitle,
+    name: employee.name,
+    jobTitle: employee.jobTitle,
     x: employee.totalAnnualAmount,
     y: now.diff(moment(employee.originalHireDate), "years"),
   }));
   const highlightedData = {
-    name: highlightedEmployee?.jobTitle,
+    name: highlightedEmployee?.name,
+    jobTitle: highlightedEmployee?.jobTitle,
     x: highlightedEmployee?.totalAnnualAmount,
     y: highlightedEmployee
       ? now.diff(moment(highlightedEmployee.originalHireDate), "years")
@@ -65,6 +68,7 @@ export default function SalaryScatterChart({
             formatter={(value, name, props) =>
               name === "salary" ? formatCurrency(value) : value
             }
+            content={<SalaryScatterChartCustomTooltip />}
           />
           {highlightedEmployee && (
             <Scatter
