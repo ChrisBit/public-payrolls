@@ -19,6 +19,9 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  agencyDetails: {
+    paddingLeft: "16px",
+  },
 });
 
 export default function AgencyDetailCard({ agency }) {
@@ -30,9 +33,13 @@ export default function AgencyDetailCard({ agency }) {
         <CardContent>
           <CardHeader
             title={`About ${name}`}
-            subheader={`Serving ${employeeCount} people in Nebraska`}
+            subheader={`Employing ${employeeCount} people in Nebraska`}
           />
-          <Typography variant="body2" component="p">
+          <Typography
+            variant="body2"
+            component="p"
+            className={classes.agencyDetails}
+          >
             Total Payroll: {formatCurrency(totalPay)}
             <hr />
             Top Pay: {formatCurrency(topPay)}
