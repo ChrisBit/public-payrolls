@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import {
+  getAllEarnersByDepartment,
   getEarnerById,
-  getTopEarnersByDepartment,
 } from "../../../api/public-payroll-api";
 import { useRouter } from "next/router";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Grid } from "@material-ui/core";
 import Head from "next/head";
 import EarnerDetailCard from "../../../components/earner-detail.card";
 import { getStyledEarnerShortName } from "../../../utils/earner-utils";
 import TopEarnersTable from "../../../components/TopEarnersTable";
 import { getAgencyNameWithoutNumber } from "../../../utils/agency-utils";
+import SalaryScatterChart from "../../../components/SalaryScatterChart";
 
 export interface Employee {
   id: string;
@@ -30,11 +31,14 @@ export default function Earner() {
   const [agencyEmployees, setAgencyEmployees] = useState(
     [] as Array<NullableEmployee>
   );
+  const filteredAgencyEmployees = agencyEmployees.filter(
+    (employeeData) => employeeData?.name != employee?.name
+  );
   useEffect(() => {
     async function fetchData(employeeId: string) {
       const employeeResponse: Employee = await getEarnerById(employeeId);
       const agencyEmployeesResponse: NullableEmployee[] =
-        await getTopEarnersByDepartment(employeeResponse.agency);
+        await getAllEarnersByDepartment(employeeResponse.agency);
       setEmployee(employeeResponse);
       setAgencyEmployees(agencyEmployeesResponse);
     }
@@ -68,7 +72,17 @@ export default function Earner() {
           />
         )}
       </Head>
-      <EarnerDetailCard employee={employee} />
+      <Grid container>
+        <Grid item lg={3} sm={12}>
+          <EarnerDetailCard employee={employee} />
+        </Grid>
+        <Grid item lg={9} sm={12}>
+          <SalaryScatterChart
+            employeeList={filteredAgencyEmployees}
+            highlightedEmployee={employee}
+          />
+        </Grid>
+      </Grid>
       <TopEarnersTable
         title={`More employees from ${getAgencyNameWithoutNumber(
           employee.agency

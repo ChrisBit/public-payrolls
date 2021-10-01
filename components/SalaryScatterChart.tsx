@@ -11,13 +11,23 @@ import {
 import moment from "moment";
 import { formatCurrency } from "../utils/utils";
 
-export default function SalaryScatterChart({ employeeList }) {
+export default function SalaryScatterChart({
+  employeeList,
+  highlightedEmployee,
+}) {
   const now = moment();
   const data = employeeList.map((employee) => ({
     name: employee.jobTitle,
     x: employee.totalAnnualAmount,
     y: now.diff(moment(employee.originalHireDate), "years"),
   }));
+  const highlightedData = {
+    name: highlightedEmployee?.jobTitle,
+    x: highlightedEmployee?.totalAnnualAmount,
+    y: highlightedEmployee
+      ? now.diff(moment(highlightedEmployee.originalHireDate), "years")
+      : 0,
+  };
   return (
     <ResponsiveContainer height={400} width="95%" minWidth="375px">
       <ScatterChart
@@ -54,7 +64,14 @@ export default function SalaryScatterChart({ employeeList }) {
             name === "salary" ? formatCurrency(value) : value
           }
         />
-        <Scatter name="A school" data={data} fill="#8884d8" />
+        {highlightedEmployee && (
+          <Scatter
+            name="highlighted employee"
+            data={[highlightedData]}
+            fill="#b81010"
+          />
+        )}
+        <Scatter name="all employees" data={data} fill="#8884d8" />
       </ScatterChart>
     </ResponsiveContainer>
   );
