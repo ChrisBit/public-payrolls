@@ -50,7 +50,7 @@ export default function Earner() {
     [] as Array<NullableEmployee>
   );
   const filteredAgencyEmployees = agencyEmployees.filter(
-    (employeeData) => employeeData?.name != employee?.name
+    (employeeData) => employeeData?.id != employee?.id
   );
   useEffect(() => {
     async function fetchData(employeeId: string) {
