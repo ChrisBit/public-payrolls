@@ -8,7 +8,7 @@ import { getStyledAgencyShortName } from "../utils/agency-utils";
 export default function TopEarnersTable({ employees, title = "Top Earners" }) {
   const router = useRouter();
   return (
-    <div className="top-earners-container">
+    <div style={{ margin: 20 }}>
       <MUIDataTable
         title={title}
         columns={[
