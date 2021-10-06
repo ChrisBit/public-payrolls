@@ -71,6 +71,7 @@ export default function SalaryScatterChart({
             labelFormatter={() => ""}
             content={<SalaryScatterChartCustomTooltip />}
           />
+          <Scatter name="all employees" data={data} fill="#8884d8" />
           {highlightedEmployee && (
             <Scatter
               name="highlighted employee"
@@ -78,7 +79,6 @@ export default function SalaryScatterChart({
               fill="#b81010"
             />
           )}
-          <Scatter name="all employees" data={data} fill="#8884d8" />
         </ScatterChart>
       </ResponsiveContainer>
     </Card>
