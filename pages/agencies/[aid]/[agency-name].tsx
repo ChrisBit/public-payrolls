@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  CircularProgress,
-  Grid,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
+import { Grid, makeStyles, Typography } from "@material-ui/core";
 import Head from "next/head";
 import AgencyDetailCard from "../../../components/agency-detail.card";
 import TopEarnersTable from "../../../components/TopEarnersTable";
@@ -18,6 +13,7 @@ import {
   getStyledAgencyShortName,
 } from "../../../utils/agency-utils";
 import SalaryScatterChart from "../../../components/SalaryScatterChart";
+import DetailPageSkeleton from "../../../components/DetailPageSkeleton";
 
 const useStyles = makeStyles({
   root: {},
@@ -118,6 +114,6 @@ export default function Agency() {
       <TopEarnersTable employees={employees} />
     </div>
   ) : (
-    <CircularProgress />
+    <DetailPageSkeleton />
   );
 }
