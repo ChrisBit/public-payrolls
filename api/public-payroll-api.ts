@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getApiBaseUrl } from "../config/config.service";
+import { getAgencyNameWithoutNumber } from "../utils/agency-utils";
 
 export const getAgenciesByName = async (agency?: string) => {
   let url = `${getApiBaseUrl()}/agencies`;
@@ -7,15 +8,20 @@ export const getAgenciesByName = async (agency?: string) => {
     url += `?name=${agency}`;
   }
   const { data: agencies } = await axios.get(url);
-  return agencies;
+  return agencies.map(cleanAgencyName);
 };
 
 export const getAgencyById = async (agencyId: string) => {
   const { data: agency } = await axios.get(
     `${getApiBaseUrl()}/agencies/${agencyId}`
   );
-  return agency;
+  return cleanAgencyName(agency);
 };
+
+const cleanAgencyName = (agency) => ({
+  ...agency,
+  name: getAgencyNameWithoutNumber(agency.name),
+});
 
 export const getTopEarnersByDepartment = async (department?: string) => {
   let url = `${getApiBaseUrl()}/employees/top-earners`;
@@ -23,7 +29,7 @@ export const getTopEarnersByDepartment = async (department?: string) => {
     url += `?agency=${department}`;
   }
   const { data: employees } = await axios.get(url);
-  return employees;
+  return employees.map(cleanEmployeeAgency);
 };
 
 export const getAllEarnersByDepartment = async (department?: string) => {
@@ -32,13 +38,13 @@ export const getAllEarnersByDepartment = async (department?: string) => {
     url += `?agency=${department}&limit=0`;
   }
   const { data: employees } = await axios.get(url);
-  return employees;
+  return employees.map(cleanEmployeeAgency);
 };
 
 export const getEarnerById = async (earnerId: string) => {
   let url = `${getApiBaseUrl()}/employees/${earnerId}`;
   const { data: employee } = await axios.get(url);
-  return employee;
+  return cleanEmployeeAgency(employee);
 };
 
 export const getEmployeesByName = async (employee?: string) => {
@@ -47,5 +53,10 @@ export const getEmployeesByName = async (employee?: string) => {
     url += `?name=${employee}`;
   }
   const { data: employees } = await axios.get(url);
-  return employees;
+  return employees.map(cleanEmployeeAgency);
 };
+
+const cleanEmployeeAgency = (employee) => ({
+  ...employee,
+  agency: getAgencyNameWithoutNumber(employee.agency),
+});
