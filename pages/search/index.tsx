@@ -4,10 +4,11 @@ import {
   getEmployeesByName,
 } from "../../api/public-payroll-api";
 import { useRouter } from "next/router";
-import { CircularProgress, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import Head from "next/head";
 import TopEarnersTable from "../../components/TopEarnersTable";
 import AgenciesTable from "../../components/AgenciesTable";
+import SearchPageSkeleton from "../../components/SearchPageSkeleton";
 
 export default function SearchResults() {
   const router = useRouter();
@@ -58,5 +59,5 @@ export default function SearchResults() {
         No results found for {q}. Try another search.
       </Typography>
     );
-  return loading ? <CircularProgress /> : searchResults();
+  return loading ? <SearchPageSkeleton /> : searchResults();
 }
