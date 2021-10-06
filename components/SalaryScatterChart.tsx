@@ -33,17 +33,9 @@ export default function SalaryScatterChart({
       : 0,
   };
   return (
-    <Card style={{ marginTop: "20px", marginLeft: "20px" }}>
+    <Card style={{ marginTop: "20px" }}>
       <ResponsiveContainer height={400} width="95%" minWidth="375px">
-        <ScatterChart
-          height={400}
-          margin={{
-            top: 20,
-            right: 20,
-            bottom: 20,
-            left: 20,
-          }}
-        >
+        <ScatterChart height={400}>
           <CartesianGrid />
           <XAxis
             type="number"
