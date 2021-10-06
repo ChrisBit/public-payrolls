@@ -4,13 +4,14 @@ import {
   getEarnerById,
 } from "../../../api/public-payroll-api";
 import { useRouter } from "next/router";
-import { CircularProgress, Grid, makeStyles } from "@material-ui/core";
+import { Grid, makeStyles } from "@material-ui/core";
 import Head from "next/head";
 import EarnerDetailCard from "../../../components/earner-detail.card";
 import { getStyledEarnerShortName } from "../../../utils/earner-utils";
 import TopEarnersTable from "../../../components/TopEarnersTable";
 import { getAgencyNameWithoutNumber } from "../../../utils/agency-utils";
 import SalaryScatterChart from "../../../components/SalaryScatterChart";
+import DetailPageSkeleton from "../../../components/DetailPageSkeleton";
 
 const useStyles = makeStyles({
   root: {},
@@ -110,6 +111,6 @@ export default function Earner() {
       />
     </div>
   ) : (
-    <CircularProgress size={100} />
+    <DetailPageSkeleton />
   );
 }
