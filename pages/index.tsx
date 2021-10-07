@@ -8,6 +8,7 @@ import TopEarnersTable from "../components/TopEarnersTable";
 import AgenciesTable from "../components/AgenciesTable";
 
 export default function Home() {
+  const ogImageUrl = `${process.env.NEXT_PUBLIC_VERCEL_URL}/public/screenshot.png`;
   const [agencies, setAgencies] = useState([]);
   const [employees, setEmployees] = useState([]);
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function Home() {
           content="Public payroll information for Nebraska state employees."
           key="ogdesc"
         />
-        <meta property="og:image" content="../public/screenshot.png" />
+        <meta property="og:image" content={ogImageUrl} key="ogimage" />
       </Head>
       <div className="agency-table-container">
         <AgenciesTable agencies={agencies} />
