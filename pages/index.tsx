@@ -41,6 +41,7 @@ export default function Home() {
           content="Public payroll information for Nebraska state employees."
           key="ogdesc"
         />
+        <meta property="og:image" content="../public/screenshot.png" />
       </Head>
       <div className="agency-table-container">
         <AgenciesTable agencies={agencies} />
