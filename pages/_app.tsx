@@ -13,7 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <SearchAppBar />
-      <Component {...pageProps} />
+      <div style={{ minHeight: "calc(100vh - 250px)" }}>
+        <Component {...pageProps} />
+      </div>
       <Footer />
     </ThemeProvider>
   );
