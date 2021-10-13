@@ -1,6 +1,7 @@
-import { Grid, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
+import { Skeleton } from "@material-ui/lab";
 
 const useStyles = makeStyles({
   infoCard: {
@@ -10,7 +11,6 @@ const useStyles = makeStyles({
     marginLeft: 20,
     paddingLeft: 16,
     marginBottom: 12,
-    backgroundColor: "#f0f0f0",
   },
   graph: { height: 400, margin: 20, backgroundColor: "#f0f0f0" },
   table: {
@@ -25,20 +25,16 @@ const useStyles = makeStyles({
 export default function DetailPageSkeleton() {
   const classes = useStyles();
   return (
-    <div>
-      <div>
-        <Grid container>
-          <Grid item lg={3} sm={12}>
-            <Paper className={classes.infoCard} />
-          </Grid>
-          <Grid item lg={9} sm={12}>
-            <Paper className={classes.graph} />
-          </Grid>
-          <Grid item sm={12}>
-            <Paper className={classes.table} />
-          </Grid>
-        </Grid>
-      </div>
-    </div>
+    <Grid container>
+      <Grid item lg={3} sm={12}>
+        <Skeleton className={classes.infoCard} />
+      </Grid>
+      <Grid item lg={9} sm={12}>
+        <Skeleton className={classes.graph} />
+      </Grid>
+      <Grid item sm={12}>
+        <Skeleton className={classes.table} />
+      </Grid>
+    </Grid>
   );
 }

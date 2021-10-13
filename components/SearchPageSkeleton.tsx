@@ -1,6 +1,7 @@
-import { Grid, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
+import { Skeleton } from "@material-ui/lab";
 
 const useStyles = makeStyles({
   table: {
@@ -19,10 +20,10 @@ export default function SearchPageSkeleton() {
       <div>
         <Grid container>
           <Grid item sm={12}>
-            <Paper className={classes.table} />
+            <Skeleton className={classes.table} />
           </Grid>
           <Grid item sm={12}>
-            <Paper className={classes.table} />
+            <Skeleton className={classes.table} />
           </Grid>
         </Grid>
       </div>
