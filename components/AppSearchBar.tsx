@@ -39,6 +39,7 @@ export default function SearchAppBar() {
         [theme.breakpoints.up("sm")]: {
           display: "block",
         },
+        cursor: "pointer",
       },
       search: {
         position: "relative",
