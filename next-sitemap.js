@@ -1,10 +1,10 @@
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_PAYROLL_API_BASE_URL,
+  siteUrl: process.env.NEXT_PUBLIC_VERCEL_URL,
   generateRobotsTxt: true,
-  exclude: ["/server-sitemap.xml", "/search*"],
+  exclude: ["/search*"],
   robotsTxtOptions: {
     additionalSitemaps: [
-      `${process.env.NEXT_PUBLIC_PAYROLL_API_BASE_URL}/server-sitemap.xml`,
+      `${process.env.NEXT_PUBLIC_VERCEL_URL}/server-sitemap.xml`,
     ],
   },
 };
