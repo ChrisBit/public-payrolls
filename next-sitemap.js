@@ -1,10 +1,10 @@
 module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_VERCEL_URL,
   generateRobotsTxt: true,
-  exclude: ["/search*"],
+  exclude: ["/search*", "/about"],
   robotsTxtOptions: {
     additionalSitemaps: [
-      `${process.env.NEXT_PUBLIC_VERCEL_URL}/server-sitemap.xml`,
+      `https://salaries.flatwaterfreepress.org/server-sitemap.xml`,
     ],
   },
 };
