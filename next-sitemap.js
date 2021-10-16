@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_VERCEL_URL,
+  siteUrl: "https://salaries.flatwaterfreepress.org",
   generateRobotsTxt: true,
   exclude: ["/search*", "/about"],
   robotsTxtOptions: {
