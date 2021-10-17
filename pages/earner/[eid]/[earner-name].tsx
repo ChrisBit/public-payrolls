@@ -54,6 +54,8 @@ export default function Earner() {
   );
   useEffect(() => {
     async function fetchData(employeeId: string) {
+      setEmployee(null);
+      setAgencyEmployees([]);
       const employeeResponse: Employee = await getEarnerById(employeeId);
       const agencyEmployeesResponse: NullableEmployee[] =
         await getAllEarnersByDepartment(employeeResponse.agency);
