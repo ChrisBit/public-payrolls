@@ -1,21 +1,32 @@
-import React from "react";
 import MUIDataTable from "mui-datatables";
-import { useRouter } from "next/router";
+import React from "react";
 import { getStyledEarnerShortName } from "../utils/earner-utils";
 import { formatCurrency } from "../utils/utils";
-import { getStyledAgencyShortName } from "../utils/agency-utils";
+import { TableLink } from "./TableLink";
 
 export default function TopEarnersTable({ employees, title = "Top Earners" }) {
-  const router = useRouter();
   return (
     <div style={{ margin: 20 }}>
       <MUIDataTable
         title={title}
         columns={[
           { name: "id", options: { display: false } },
-          { name: "name", label: "Name" },
+          {
+            name: "name",
+            label: "Name",
+            options: {
+              customBodyRender: (value, tableMeta) => {
+                const id = tableMeta.rowData[0];
+                const link = `/earner/${id}/${getStyledEarnerShortName(value)}`;
+                return <TableLink link={link} text={value}></TableLink>;
+              },
+            },
+          },
           { name: "jobTitle", label: "Title" },
-          { name: "agency", label: "Agency" },
+          {
+            name: "agency",
+            label: "Agency",
+          },
           {
             name: "totalAnnualAmount",
             label: "Pay",
@@ -37,17 +48,6 @@ export default function TopEarnersTable({ employees, title = "Top Earners" }) {
           print: false,
           viewColumns: false,
           selectableRows: "none",
-          onRowClick: (rowData) => {
-            console.log(rowData);
-            router.push(
-              `/earner/${rowData[0]}/${getStyledAgencyShortName(rowData[1])}`
-            );
-          },
-        }}
-        // @ts-ignore
-        onRowClick={(event, { id, name }) => {
-          event?.preventDefault();
-          router.push(`/earner/${id}/${getStyledEarnerShortName(name)}`);
         }}
       />
     </div>

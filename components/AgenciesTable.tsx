@@ -1,8 +1,8 @@
-import React from "react";
 import MUIDataTable from "mui-datatables";
-import { useRouter } from "next/router";
+import React from "react";
 import { getStyledAgencyShortName } from "../utils/agency-utils";
 import { formatCurrency } from "../utils/utils";
+import { TableLink } from "./TableLink";
 
 export default function AgenciesTable({ agencies, title = "Agencies" }) {
   const data = agencies.map(
@@ -17,8 +17,6 @@ export default function AgenciesTable({ agencies, title = "Agencies" }) {
     ]
   );
 
-  const router = useRouter();
-
   return (
     <div style={{ margin: 20 }}>
       <MUIDataTable
@@ -26,7 +24,21 @@ export default function AgenciesTable({ agencies, title = "Agencies" }) {
         data={data}
         columns={[
           { name: "id", label: "ID", options: { display: false } },
-          { name: "name", label: "Agency" },
+          {
+            name: "name",
+            label: "Agency",
+            options: {
+              customBodyRender: (value, tableMeta) => {
+                const id = tableMeta.rowData[0];
+                return (
+                  <TableLink
+                    link={`/agencies/${id}/${getStyledAgencyShortName(value)}`}
+                    text={value}
+                  />
+                );
+              },
+            },
+          },
           {
             name: "employeeCount",
             label: "Employees",
@@ -73,10 +85,6 @@ export default function AgenciesTable({ agencies, title = "Agencies" }) {
           print: false,
           viewColumns: false,
           selectableRows: "none",
-          onRowClick: (rowData) =>
-            router.push(
-              `/agencies/${rowData[0]}/${getStyledAgencyShortName(rowData[1])}`
-            ),
         }}
       />
     </div>
