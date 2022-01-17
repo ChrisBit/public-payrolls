@@ -21,12 +21,16 @@ export default function SalaryScatterChart({
   const data = employeeList.map((employee) => ({
     name: employee.name,
     jobTitle: employee.jobTitle,
+    salary: employee.salary,
+    overtime: employee.overtime,
     x: employee.totalAnnualAmount,
     y: now.diff(moment(employee.originalHireDate), "years"),
   }));
   const highlightedData = {
     name: highlightedEmployee?.name,
     jobTitle: highlightedEmployee?.jobTitle,
+    salary: highlightedEmployee?.salary,
+    overtime: highlightedEmployee?.overtime,
     x: highlightedEmployee?.totalAnnualAmount,
     y: highlightedEmployee
       ? now.diff(moment(highlightedEmployee.originalHireDate), "years")
@@ -43,10 +47,10 @@ export default function SalaryScatterChart({
           <XAxis
             type="number"
             dataKey="x"
-            name="salary"
+            name="Total Pay"
             tickFormatter={formatCurrency}
           >
-            <Label value="Annual salary" offset={0} position="bottom" />
+            <Label value="Total Pay" offset={0} position="bottom" />
           </XAxis>
           <YAxis
             type="number"
@@ -61,7 +65,9 @@ export default function SalaryScatterChart({
           <Tooltip
             cursor={{ strokeDasharray: "3 3" }}
             formatter={(value, name, props) =>
-              name === "salary" ? formatCurrency(value) : value
+              name === "Total Pay" || name === "Salary" || name === "Overtime"
+                ? formatCurrency(value)
+                : value
             }
             labelFormatter={() => ""}
             content={<SalaryScatterChartCustomTooltip />}

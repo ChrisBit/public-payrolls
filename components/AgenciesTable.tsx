@@ -6,12 +6,28 @@ import { formatCurrency } from "../utils/utils";
 
 export default function AgenciesTable({ agencies, title = "Agencies" }) {
   const data = agencies.map(
-    ({ id, name, employeeCount, topPay, medianPay, totalPay, year }) => [
+    ({
       id,
       name,
       employeeCount,
+      topSalary,
+      topOvertime,
       topPay,
       medianPay,
+      totalSalary,
+      totalOvertime,
+      totalPay,
+      year,
+    }) => [
+      id,
+      name,
+      employeeCount,
+      topSalary,
+      topOvertime,
+      topPay,
+      medianPay,
+      totalSalary,
+      totalOvertime,
       totalPay,
       year,
     ]
@@ -32,6 +48,28 @@ export default function AgenciesTable({ agencies, title = "Agencies" }) {
             label: "Employees",
           },
           {
+            name: "topSalary",
+            label: "Top Salary",
+            options: {
+              sortDirection: "desc",
+              customBodyRenderLite: (dataIndex) => {
+                let val = agencies[dataIndex].topSalary;
+                return formatCurrency(val);
+              },
+            },
+          },
+          {
+            name: "topOvertime",
+            label: "Top Overtime",
+            options: {
+              sortDirection: "desc",
+              customBodyRenderLite: (dataIndex) => {
+                let val = agencies[dataIndex].topOvertime;
+                return formatCurrency(val);
+              },
+            },
+          },
+          {
             name: "topPay",
             label: "Top Pay",
             options: {
@@ -48,6 +86,26 @@ export default function AgenciesTable({ agencies, title = "Agencies" }) {
             options: {
               customBodyRenderLite: (dataIndex) => {
                 let val = agencies[dataIndex].medianPay;
+                return formatCurrency(val);
+              },
+            },
+          },
+          {
+            name: "totalSalary",
+            label: "Total Salary",
+            options: {
+              customBodyRenderLite: (dataIndex) => {
+                let val = agencies[dataIndex].totalSalary;
+                return formatCurrency(val);
+              },
+            },
+          },
+          {
+            name: "totalOvertime",
+            label: "Total Overtime",
+            options: {
+              customBodyRenderLite: (dataIndex) => {
+                let val = agencies[dataIndex].totalOvertime;
                 return formatCurrency(val);
               },
             },

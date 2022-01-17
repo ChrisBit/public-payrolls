@@ -17,6 +17,28 @@ export default function TopEarnersTable({ employees, title = "Top Earners" }) {
           { name: "jobTitle", label: "Title" },
           { name: "agency", label: "Agency" },
           {
+            name: "salary",
+            label: "Salary",
+            options: {
+              sortDirection: "desc",
+              customBodyRenderLite: (dataIndex) => {
+                let val = employees[dataIndex].salary;
+                return formatCurrency(val);
+              },
+            },
+          },
+          {
+            name: "overtime",
+            label: "Overtime",
+            options: {
+              sortDirection: "desc",
+              customBodyRenderLite: (dataIndex) => {
+                let val = employees[dataIndex].overtime;
+                return formatCurrency(val);
+              },
+            },
+          },
+          {
             name: "totalAnnualAmount",
             label: "Pay",
             options: {

@@ -28,7 +28,17 @@ const useStyles = makeStyles({
 });
 
 export default function AgencyDetailCard({ agency }) {
-  const { employeeCount, name, topPay, medianPay, totalPay } = agency;
+  const {
+    employeeCount,
+    name,
+    topSalary,
+    topOvertime,
+    topPay,
+    medianPay,
+    totalSalary,
+    totalOvertime,
+    totalPay,
+  } = agency;
   const classes = useStyles();
   return (
     <>
@@ -45,7 +55,15 @@ export default function AgencyDetailCard({ agency }) {
           >
             Total Payroll: {formatCurrency(totalPay)}
             <hr />
+            Total Salary: {formatCurrency(totalSalary)}
+            <hr />
+            Total Overtime: {formatCurrency(totalOvertime)}
+            <hr />
             Top Pay: {formatCurrency(topPay)}
+            <hr />
+            Top Salary: {formatCurrency(topSalary)}
+            <hr />
+            Top Overtime: {formatCurrency(topOvertime)}
             <hr />
             Median Pay: {formatCurrency(medianPay)}
           </Typography>

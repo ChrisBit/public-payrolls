@@ -17,6 +17,18 @@ export default function SalaryScatterChartCustomTooltip(props) {
       value: props.payload[0].payload.jobTitle,
       // you can also add "unit" here if you need it
     },
+    {
+      name: "Salary",
+      // all your data which created the tooltip is located in the .payload property
+      value: props.payload[0].payload.salary,
+      // you can also add "unit" here if you need it
+    },
+    {
+      name: "Overtime",
+      // all your data which created the tooltip is located in the .payload property
+      value: props.payload[0].payload.overtime,
+      // you can also add "unit" here if you need it
+    },
     ...props.payload,
   ];
 

@@ -27,8 +27,16 @@ const useStyles = makeStyles({
 });
 
 export default function EarnerDetailCard({ employee }) {
-  const { name, jobTitle, agency, totalAnnualAmount, year, originalHireDate } =
-    employee;
+  const {
+    name,
+    jobTitle,
+    agency,
+    salary,
+    overtime,
+    totalAnnualAmount,
+    year,
+    originalHireDate,
+  } = employee;
   const classes = useStyles();
   return (
     <>
@@ -44,6 +52,10 @@ export default function EarnerDetailCard({ employee }) {
             Agency: {agency}
             <hr />
             Total Pay: {formatCurrency(totalAnnualAmount)}
+            <hr />
+            Salary: {formatCurrency(salary)}
+            <hr />
+            Overtime: {formatCurrency(overtime)}
             <hr />
             Year: {year}
             <hr />
