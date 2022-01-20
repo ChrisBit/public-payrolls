@@ -29,7 +29,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const fields = [...agencyUrls, ...employeeUrls].map((url) => {
     return {
       loc: url,
-      changefreq: "weekly",
       priority: 0.9,
       lastmod: new Date().toISOString(),
     };
