@@ -1,21 +1,22 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
-import { useRouter } from "next/router";
-import { getStyledEarnerShortName } from "../utils/earner-utils";
-import { formatCurrency } from "../utils/utils";
-import { getStyledAgencyShortName } from "../utils/agency-utils";
+import {useRouter} from "next/router";
+import {getStyledEarnerShortName} from "../utils/earner-utils";
+import {formatCurrency} from "../utils/utils";
+import {getStyledAgencyShortName} from "../utils/agency-utils";
 
-export default function TopEarnersTable({ employees, title = "Top Earners" }) {
+export default function TopEarnersTable({employees, title = "Top Earners"}) {
   const router = useRouter();
   return (
-    <div style={{ margin: 20 }}>
+    <div style={{margin: 20}}>
       <MUIDataTable
         title={title}
         columns={[
-          { name: "id", options: { display: false } },
-          { name: "name", label: "Name" },
-          { name: "jobTitle", label: "Title" },
-          { name: "agency", label: "Agency" },
+          {name: "id", options: {display: false}},
+          {name: "name", label: "Name"},
+          {name: "jobTitle", label: "Title"},
+          {name: "agency", label: "Agency"},
+          {name: "organization", label: "Organization"},
           {
             name: "salary",
             label: "Salary",
@@ -49,8 +50,8 @@ export default function TopEarnersTable({ employees, title = "Top Earners" }) {
               },
             },
           },
-          { name: "year", label: "Year" },
-          { name: "originalHireDate", label: "Hire Date" },
+          {name: "year", label: "Year"},
+          {name: "originalHireDate", label: "Hire Date"},
         ]}
         data={employees}
         options={{
@@ -67,7 +68,7 @@ export default function TopEarnersTable({ employees, title = "Top Earners" }) {
           },
         }}
         // @ts-ignore
-        onRowClick={(event, { id, name }) => {
+        onRowClick={(event, {id, name}) => {
           event?.preventDefault();
           router.push(`/earner/${id}/${getStyledEarnerShortName(name)}`);
         }}

@@ -1,26 +1,28 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
-import { useRouter } from "next/router";
-import { getStyledAgencyShortName } from "../utils/agency-utils";
-import { formatCurrency } from "../utils/utils";
+import {useRouter} from "next/router";
+import {getStyledAgencyShortName} from "../utils/agency-utils";
+import {formatCurrency} from "../utils/utils";
 
-export default function AgenciesTable({ agencies, title = "Agencies" }) {
+export default function AgenciesTable({agencies, title = "Agencies"}) {
   const data = agencies.map(
     ({
+       id,
+       name,
+       organization,
+       employeeCount,
+       topSalary,
+       topOvertime,
+       topPay,
+       medianPay,
+       totalSalary,
+       totalOvertime,
+       totalPay,
+       year,
+     }) => [
       id,
       name,
-      employeeCount,
-      topSalary,
-      topOvertime,
-      topPay,
-      medianPay,
-      totalSalary,
-      totalOvertime,
-      totalPay,
-      year,
-    }) => [
-      id,
-      name,
+      organization,
       employeeCount,
       topSalary,
       topOvertime,
@@ -36,13 +38,14 @@ export default function AgenciesTable({ agencies, title = "Agencies" }) {
   const router = useRouter();
 
   return (
-    <div style={{ margin: 20 }}>
+    <div style={{margin: 20}}>
       <MUIDataTable
         title={title}
         data={data}
         columns={[
-          { name: "id", label: "ID", options: { display: false } },
-          { name: "name", label: "Agency" },
+          {name: "id", label: "ID", options: {display: false}},
+          {name: "name", label: "Agency"},
+          {name: "organization", label: "Organization"},
           {
             name: "employeeCount",
             label: "Employees",
