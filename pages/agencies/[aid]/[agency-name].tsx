@@ -6,7 +6,7 @@ import AgencyDetailCard from "../../../components/agency-detail.card";
 import TopEarnersTable from "../../../components/TopEarnersTable";
 import {
   getAgencyById,
-  getAllEarnersByDepartment,
+  getAllEarnersByDepartment, getNotes,
 } from "../../../api/public-payroll-api";
 import {
   getAgencyNameWithoutNumber,
@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 });
 
 export interface Agency {
+  organization: string;
   id: string;
   name: string;
   employeeCount: string;
@@ -43,21 +44,26 @@ export interface Agency {
 export interface AgencyState {
   agency: Agency | null;
   employees;
+  note;
 }
 
 export default function Agency() {
   const router = useRouter();
   const classes = useStyles();
   const { aid } = router.query;
-  const [{ agency, employees }, setState] = useState({
+  const [{ agency, employees, note }, setState] = useState({
     agency: null,
     employees: null,
+    note: null
   } as AgencyState);
   useEffect(() => {
     async function fetchData(agencyId: string) {
       const agencyResponse = await getAgencyById(agencyId);
       const employees = await getAllEarnersByDepartment(agencyResponse.name);
-      setState({ agency: agencyResponse, employees });
+      const notes = await getNotes();
+      let note = notes.filter(note => note.organization === employees[0]?.organization);
+      note = note.length ? note[0] : '';
+      setState({ agency: agencyResponse, employees, note });
     }
     if (typeof aid === "string") {
       fetchData(aid).then();
@@ -95,13 +101,13 @@ export default function Agency() {
       </Head>
       <div className={classes.title}>
         <Typography variant={"h3"} component={"h1"}>
-          {getAgencyNameWithoutNumber(agency.name)}
+          {`${getAgencyNameWithoutNumber(agency.name)} (${agency.organization})`}
         </Typography>
       </div>
       <div className={classes.columns}>
         <Grid container>
           <Grid item lg={3} sm={12}>
-            <AgencyDetailCard agency={agency} />
+            <AgencyDetailCard agency={agency} note={note} />
           </Grid>
           <Grid item lg={9} sm={12}>
             <SalaryScatterChart

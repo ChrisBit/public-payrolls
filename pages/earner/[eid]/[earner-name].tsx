@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   getAllEarnersByDepartment,
-  getEarnerById,
+  getEarnerById, getNotes,
 } from "../../../api/public-payroll-api";
 import { useRouter } from "next/router";
 import { Grid, makeStyles } from "@material-ui/core";
@@ -34,6 +34,7 @@ export interface Employee {
   name: string;
   jobTitle: string;
   agency: string;
+  organization: string;
   totalAnnualAmount: string;
   year: string;
   originalHireDate: string;
@@ -49,6 +50,7 @@ export default function Earner() {
   const [agencyEmployees, setAgencyEmployees] = useState(
     [] as Array<NullableEmployee>
   );
+  const [note, setNote] = useState()
   const filteredAgencyEmployees = agencyEmployees.filter(
     (employeeData) => employeeData?.id != employee?.id
   );
@@ -57,10 +59,13 @@ export default function Earner() {
       setEmployee(null);
       setAgencyEmployees([]);
       const employeeResponse: Employee = await getEarnerById(employeeId);
+      const notes = await getNotes();
+      const note = notes.filter(note => note.organization === employeeResponse.organization);
       const agencyEmployeesResponse: NullableEmployee[] =
         await getAllEarnersByDepartment(employeeResponse.agency);
       setEmployee(employeeResponse);
       setAgencyEmployees(agencyEmployeesResponse);
+      setNote(note.length ? note[0] : '')
     }
     if (typeof eid === "string") {
       fetchData(eid).then();
@@ -95,7 +100,7 @@ export default function Earner() {
       <div className={classes.columns}>
         <Grid container>
           <Grid item lg={3} sm={12}>
-            <EarnerDetailCard employee={employee} />
+            <EarnerDetailCard employee={employee} note={note} />
           </Grid>
           <Grid item lg={9} sm={12}>
             <SalaryScatterChart

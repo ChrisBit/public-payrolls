@@ -60,3 +60,9 @@ const cleanEmployeeAgency = (employee) => ({
   ...employee,
   agency: getAgencyNameWithoutNumber(employee.agency),
 });
+
+export const getNotes = async () => {
+  let url = `${getApiBaseUrl()}/notes`;
+  const { data: notes } = await axios.get(url);
+  return notes;
+}

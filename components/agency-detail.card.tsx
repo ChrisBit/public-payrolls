@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AgencyDetailCard({ agency }) {
+export default function AgencyDetailCard({ agency, note }) {
   const {
     employeeCount,
     name,
@@ -40,6 +40,16 @@ export default function AgencyDetailCard({ agency }) {
     totalPay,
   } = agency;
   const classes = useStyles();
+
+  const renderNote = () => {
+    return (
+      <>
+        <hr/>
+        Note: {note.note}
+      </>
+    )
+  }
+
   return (
     <>
       <Card className={classes.root} variant="outlined">
@@ -66,6 +76,7 @@ export default function AgencyDetailCard({ agency }) {
             Top Overtime: {formatCurrency(topOvertime)}
             <hr />
             Median Pay: {formatCurrency(medianPay)}
+            { note?.note && renderNote()}
           </Typography>
         </CardContent>
       </Card>
